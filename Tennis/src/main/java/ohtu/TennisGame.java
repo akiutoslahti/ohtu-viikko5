@@ -1,7 +1,7 @@
 package ohtu;
 
 public class TennisGame {
-    
+
     private final int SCORE_LIMIT = 3;
     private final int ADVANTAGE = 1;
 
@@ -48,19 +48,24 @@ public class TennisGame {
     }
 
     private String getAdvantageOrWinScore() {
-        String score = "";
-        int difference = player1Score - player2Score;
-        if (Math.abs(difference) == ADVANTAGE) {
-            score += "Advantage ";
+        return getAdvantageOrWin() + " " + getPlayerAtAdvantageOrWin();
+    }
+
+    private String getAdvantageOrWin() {
+        int difference = Math.abs(player1Score - player2Score);
+        if (difference == ADVANTAGE) {
+            return "Advantage";
         } else {
-            score += "Win for ";
+            return "Win for";
         }
-        if (difference < 0) {
-            score += player2Name;
+    }
+
+    private String getPlayerAtAdvantageOrWin() {
+        if (player1Score < player2Score) {
+            return player2Name;
         } else {
-            score += player1Name;
+            return player1Name;
         }
-        return score;
     }
 
     private String getScoreAtPoint(int point) {
